@@ -1,32 +1,24 @@
 import requests
 import json
-from csv_writer import write_csv
+from csv_writer import write_csv, write_players
 
-# The only free seasons for use are 2021 and 2022, so those weeks will make up the dataset
-# Set the API endpoint URL
-url = "https://api.sportsdata.io/v3/nfl/stats/json/PlayerGameStatsByWeek/2021/1"
+# First, we need to create the dataset for playerIDs, positionIDs, and teamIDs
+player_list = list()
 
-# Set the API key
-api_key = "be646eda27c1403d866308a91602848f"
+for page_num in range(1, 6):
+    url = f"https://sports.core.api.espn.com/v2/sports/football/leagues/nfl/athletes?limit=1000&active=" \
+          f"true&page={page_num}"
 
-# Set the request headers
-headers = {
-    "Ocp-Apim-Subscription-Key": api_key
-}
+    response = requests.get(url)
+    parse_json = json.loads(response.text)
+    items = parse_json["items"]
 
-# Send the request to the API endpoint
-response = requests.get(url, headers=headers)
-parse_json = json.loads(response.text)
+    for item in items:
+        player_list.append(item["$ref"])
 
-# Testing to make sure that the api call works correctly
-# for item in parse_json:
-#     print(item["Name"])
-
-for item in parse_json:
-    ff_pos = {"QB", "RB", "WR", "TE", "K"}
-
-    # ignoring players not a part of fantasy football
-    if item["Position"] not in ff_pos:
-        continue
-
-    write_csv(item["Position"], item["Name"])
+write_players(player_list)
+# url = player_list[0]
+# response = requests.get(url)
+# pj = json.loads(response.text)
+#
+# print(pj["headshot"]["href"])
