@@ -32,8 +32,11 @@ k_header.extend(
      "fieldGoalsMade-fieldGoalAttempts", "fieldGoalsMadeYardsAverage", "extraPointsMade-extraPointAttempts",
      "totalKickingPoints"])
 
-def_header = list(base_header)
-def_header.extend(
-    [])
+def_header = ["team", "teamID", "gameID", "season", "week", "opponent", "opponentID",
+              "completions", "passingAttempts", "passingYards", "completionPct", "yardsPerPassAttempt",
+              "yardsPerCompletion", "passingTouchdowns", "interceptions", "sacks", "rushingYards", "rushingAttempts",
+              "yardsPerRushAttempt", "rushingTouchdowns", "receivingTouchdowns", "fumbles", "fumblesRecovered",
+              "fieldGoalsMade1_19", "fieldGoalsMade20_29", "fieldGoalsMade30_39", "fieldGoalsMade40_49",
+              "fieldGoalsMade50", "extraPointsMade", "totalKickingPoints"]
 
 headers = {"QB": qb_header, "RB": rb_header, "WR": wr_header, "TE": te_header, "PK": k_header, "DEF": def_header}

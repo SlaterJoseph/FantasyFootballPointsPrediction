@@ -7,8 +7,8 @@ from time import sleep
 from headers import headers as hd
 
 
-# First, we need to create the dataset for playerIDs, positionIDs, and teamIDs
 
+# First, we need to create the dataset for playerIDs, positionIDs, and teamIDs
 def create_players_data() -> None:
     player_list = list()
 
@@ -66,4 +66,4 @@ def create_cvs(pos: str) -> None:
 
 
 # create_players_data()
-create_positional_data()
+# create_positional_data()

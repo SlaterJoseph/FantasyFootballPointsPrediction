@@ -13,7 +13,6 @@ from time import sleep
 #     "receivingTouchdowns", "longReception", "fumbles", "fumblesLost",
 # ]
 
-
 def write_players(items: list) -> None:
     """Function for creating player_data csv"""
     header = ["fullName", "playerID", "teamName", "teamID", "positionName", "positionID", "positionAbbreviation",
